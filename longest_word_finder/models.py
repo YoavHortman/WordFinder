@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from longest_word_finder.managers import ActionManager
 
 
 class Word(models.Model):
@@ -22,6 +23,8 @@ class Action(models.Model):
     user = models.ForeignKey(User)
     word = models.ForeignKey(Word)
     date = models.DateTimeField(auto_now=True)
+
+    objects = ActionManager()
 
     def __str__(self):
         return self.type.name
