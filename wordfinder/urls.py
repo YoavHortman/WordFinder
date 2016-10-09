@@ -15,7 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from wordfinder import utils
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 ]
+
+utils.code()

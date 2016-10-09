@@ -1,10 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
-from longest_word_finder.managers import ActionManager
+from longest_word_finder.managers import ActionManager, WordManager
 
 
 class Word(models.Model):
     word = models.CharField(max_length=40)
+
+    objects = WordManager()
 
     def __str__(self):
         return self.word
