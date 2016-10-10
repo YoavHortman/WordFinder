@@ -28,7 +28,7 @@ class ActionManager(models.Manager):
         for word in unique_words:
             redis_conn.rpush(GeneralUtils.REDIS_DB_NAME, word)
 
-        super(ActionManager, self).get_queryset()
+        super(ActionManager, self).get_queryset().create()
 
 
 class WordManager(models.Manager):
@@ -74,41 +74,41 @@ class WordManager(models.Manager):
 
         return True
 
-
-@staticmethod
-def get_user_rank(points):
-    ranks = Rank.objects.filter(points__lte=points)
-
-    # Last rank is users rank
-    return ranks[len(ranks) - 1]
-
-
-@staticmethod
-def get_user_next_rank(points):
-    return Rank.objects.filter(points__gte=points)[0]
-
-
-@staticmethod
-def get_all_user_actions_of_type(user, action_type):
-    return Action.objects.filter(user_id=user.id, type=action_type)
-
-
-@staticmethod
-def get_actions_for_word(word):
-    return Action.objects.filter(word=word)
-
-
-@staticmethod
-def get_actions_of_type_for_word(word, action_type):
-    return Action.objects.filter(word=word, type=action_type)
-
-
-@staticmethod
-def get_all_action_types():
-    return ActionType.objects.all()
-
-
-@staticmethod
-def get_longest_words(pool, wild_amount, constraint_indexes, constraint_chars):
-    longest_word = ""
-    Word.objects.filter()
+#
+# @staticmethod
+# def get_user_rank(points):
+#     ranks = Rank.objects.filter(points__lte=points)
+#
+#     # Last rank is users rank
+#     return ranks[len(ranks) - 1]
+#
+#
+# @staticmethod
+# def get_user_next_rank(points):
+#     return Rank.objects.filter(points__gte=points)[0]
+#
+#
+# @staticmethod
+# def get_all_user_actions_of_type(user, action_type):
+#     return Action.objects.filter(user_id=user.id, type=action_type)
+#
+#
+# @staticmethod
+# def get_actions_for_word(word):
+#     return Action.objects.filter(word=word)
+#
+#
+# @staticmethod
+# def get_actions_of_type_for_word(word, action_type):
+#     return Action.objects.filter(word=word, type=action_type)
+#
+#
+# @staticmethod
+# def get_all_action_types():
+#     return ActionType.objects.all()
+#
+#
+# @staticmethod
+# def get_longest_words(pool, wild_amount, constraint_indexes, constraint_chars):
+#     longest_word = ""
+#     Word.objects.filter()
